@@ -1,17 +1,17 @@
 import React, {Component} from 'react';
-import {View, Text, SafeAreaView, StyleSheet, Image, TextInput, ScrollView, TouchableWithoutFeedback} from 'react-native';
+import {View, Text, SafeAreaView, StyleSheet, Image, TextInput, ScrollView, Platform, TouchableWithoutFeedback} from 'react-native';
 import Places from './Places';
 
 class HomePage extends Component {
     constructor(props){
         super(props)
         this.rio = new Places("Some Beach in Rio de Janeiro", require('../assets/beach.jpg'), "Rio de Janeiro, Brazil", 100, "Este playa es muy preciosa. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." );
-        this.cancun = new Places("Some Beach in Cancun", require('../assets/beach.jpg'), "Cancun, Mexico", 120, "Este playa es muy preciosa. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." );
+        this.maldives = new Places("Reethi Faru resort", require('../assets/maldives.jpg'), "Filaidhoo, Maldives", 120, "Este playa es muy preciosa. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." );
     }
     render(){
         return(
             <View>
-                <SafeAreaView></SafeAreaView>
+                <SafeAreaView style={styles.safeareaview}></SafeAreaView>
                 <View style={styles.homeHeader}>
                     <View style={{flex: 1}}>
 
@@ -41,13 +41,13 @@ class HomePage extends Component {
                                         </View>
                                     </TouchableWithoutFeedback>
 
-                                    <TouchableWithoutFeedback onPress={()=> this.props.navigation.navigate('Info', {destination: this.cancun})}>
+                                    <TouchableWithoutFeedback onPress={()=> this.props.navigation.navigate('Info', {destination: this.maldives})}>
                                         <View style={styles.destination}>
-                                            <Image source={this.cancun.image} style={styles.destinationImage}></Image>
+                                            <Image source={this.maldives.image} style={styles.destinationImage}></Image>
                                             <View style={styles.destinationBody}>
-                                                <Text style={{flex: 1, fontSize: 17, fontWeight: '500'}}>{this.cancun.name}</Text>
-                                                <Text style={{flex: 1, fontSize: 15, fontWeight: '500', color: 'silver'}}>{this.cancun.location}</Text>
-                                                <Text style={{flex: 1, fontSize: 17, fontWeight: '700'}}>${this.cancun.price}/night</Text>
+                                                <Text style={{flex: 1, fontSize: 17, fontWeight: '500'}}>{this.maldives.name}</Text>
+                                                <Text style={{flex: 1, fontSize: 15, fontWeight: '500', color: 'silver'}}>{this.maldives.location}</Text>
+                                                <Text style={{flex: 1, fontSize: 17, fontWeight: '700'}}>${this.maldives.price}/night</Text>
                                             </View>
                                         </View>
                                     </TouchableWithoutFeedback>
@@ -63,16 +63,6 @@ class HomePage extends Component {
                                         </View>
                                     </TouchableWithoutFeedback>
 
-                                    <TouchableWithoutFeedback onPress={()=> this.props.navigation.navigate('Info', {destination: this.cancun})}>
-                                        <View style={styles.destination}>
-                                            <Image source={this.cancun.image} style={styles.destinationImage}></Image>
-                                            <View style={styles.destinationBody}>
-                                                <Text style={{flex: 1, fontSize: 17, fontWeight: '500'}}>{this.cancun.name}</Text>
-                                                <Text style={{flex: 1, fontSize: 15, fontWeight: '500', color: 'silver'}}>{this.cancun.location}</Text>
-                                                <Text style={{flex: 1, fontSize: 17, fontWeight: '700'}}>${this.cancun.price}/night</Text>
-                                            </View>
-                                        </View>
-                                    </TouchableWithoutFeedback>
                                 </View>
                             </View>
                     </View>
@@ -126,6 +116,9 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         backgroundColor: "silver",
         paddingLeft: 10,
+    },
+    safeareaview: {
+        marginTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
     }
 })
 

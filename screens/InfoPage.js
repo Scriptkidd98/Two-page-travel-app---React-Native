@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, SafeAreaView, Image, StyleSheet} from 'react-native';
+import {View, Text, SafeAreaView, Image, StyleSheet, Platform, TouchableWithoutFeedback} from 'react-native';
 
 class InfoPage extends Component {
     constructor(props){
@@ -11,7 +11,12 @@ class InfoPage extends Component {
     render(){
         return(
             <View>
-                <SafeAreaView></SafeAreaView>
+                <SafeAreaView style={styles.safeareaview}></SafeAreaView>
+                <View style={styles.commentheader}>
+                    <TouchableWithoutFeedback onPress={() => this.props.navigation.navigate('Home')}>
+                        <Image source={require('../assets/backarrow.png')} style={{width: 25, height: 25,}}></Image>
+                    </TouchableWithoutFeedback>
+                </View>
                 <View style={styles.infoBody}>
                     <Image source={this.state.destination.image} style={{width: '100%',height: 300}}></Image>
                     <Text style={styles.name}>{this.state.destination.name}</Text>
@@ -39,6 +44,7 @@ const styles = StyleSheet.create({
         width: '100%',
         paddingLeft: '2.5%',
         paddingRight: '2.5%',
+        paddingTop: '2.5%',
     },
     name: {
         fontSize: 20,
@@ -54,6 +60,16 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: '700',
         paddingTop: 20,
+    },
+    safeareaview: {
+        marginTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+    },
+    commentheader: {
+        flexDirection: 'row',
+        alignContent: 'flex-start',
+        padding: 15,
+        borderBottomWidth: 0.5,
+        borderBottomColor: 'rgba(0,0,0,0.1)',
     },
 })
 
